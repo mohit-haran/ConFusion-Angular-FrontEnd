@@ -1,0 +1,88 @@
+<div class="container"
+  fxLayout="column"
+  fxLayoutGap="10px">
+
+  <div fxFlex>
+    <div>
+        <h3>Contact Us</h3>
+        <hr>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <h3>Location Information</h3> 
+    <div fxLayout="column" fxLayout.gt-sm="row">
+      <div fxFlex="50" fxFlexOffset="20px">
+        <h4>Our Address</h4>
+        <address style="font-size: 80%">
+            121, Clear Water Bay Road<br> Clear Water Bay, Kowloon<br> HONG KONG<br>
+            <fa-icon [icon]=phone></fa-icon>: +852 1234 5678<br>
+            <fa-icon [icon]=fax></fa-icon> +852 8765 4321<br>
+            <fa-icon [icon]=envelope></fa-icon>:
+            <a href="mailto:confusion@food.net">confusion@food.net</a>
+          </address>
+        <p></p>
+        <div>
+          <a mat-raised-button href="tel:+85212345678"><fa-icon [icon]=phone></fa-icon> Call</a>
+          <a mat-raised-button><fa-icon [icon]=skype></fa-icon> Skype</a>
+          <a mat-raised-button href="mailto:confusion@food.net"><fa-icon [icon]=envelope></fa-icon> Email</a>
+        </div>
+        </div>
+      <div fxFlex="40">
+        <h4>Map of our Location</h4>
+      </div>
+    </div>
+  </div>
+  <div fxFlex fxFlexOffset="20px" class="form-size">
+    <h3>Send us your feedback</h3>
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+          <mat-error *ngIf="formErrors.firstname">
+            {{formErrors.firstname}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+          <mat-error *ngIf="formErrors.lastname">
+            {{formErrors.lastname}}
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="telnum" placeholder="Telephone Number" type="tel" required>
+          <mat-error *ngIf="formErrors.telnum">
+            {{formErrors.telnum}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="email" placeholder="E-mail" type="email" email required>
+          <mat-error *ngIf="formErrors.email">
+            {{formErrors.email}}
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <table class="form-size">
+        <td>
+          <mat-slide-toggle formControlName="agree">May we contact you?</mat-slide-toggle>
+        </td>
+        <td>
+          <mat-select placeholder="How?" formControlName="contactType">
+            <mat-option *ngFor="let ctype of contactType" [value]="ctype">
+              {{ ctype }}
+            </mat-option>
+          </mat-select>
+        </td>
+      </table>
+      <p>
+        <mat-form-field class="full-width">
+          <textarea matInput formControlName="message" placeholder="Your Feedback" rows="12"></textarea>
+        </mat-form-field>
+      </p>
+      <button mat-button type="submit" class="background-primary text-floral-white"
+        [disabled]="feedbackForm.invalid">Submit Feedback</button>
+    </form>
+  </div>
+</div>
